@@ -1,0 +1,55 @@
+group 'com.epam.mentorship'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+//apply plugin: 'jetty'
+apply plugin: 'org.akhikhl.gretty'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def springVersion = "4.3.2.RELEASE"
+def h2DatabaseVersion = "1.4.192"
+def javaxServletVersion = "3.1.0"
+def jstlVersion = "1.2"
+
+//Gretty Embedded Jetty
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
+gretty {
+    port = 8070
+    contextPath = '/'
+    servletContainer = 'jetty9'
+}
+
+//jettyRun{
+//    contextPath = "qq"
+//    httpPort = 8070
+//}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    compile "javax.servlet:javax.servlet-api:${javaxServletVersion}"
+    compile "javax.servlet:jstl:${jstlVersion}"
+
+    compile "org.springframework:spring-core:${springVersion}"
+    compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-jdbc:${springVersion}"
+    compile "org.springframework:spring-webmvc:${springVersion}"
+
+    compile "com.h2database:h2:${h2DatabaseVersion}"
+}
