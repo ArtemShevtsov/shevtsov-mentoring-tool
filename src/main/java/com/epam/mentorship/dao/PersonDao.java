@@ -21,23 +21,12 @@ public class PersonDao implements EntryDao<Person> {
     @Autowired
     private JdbcTemplate jdbcEmbeddedH2Template;
 
-    @Autowired
-    private List<Person> listPersons;
-
     private final String GET_PERSON_BY_ID_QUERY = "select * from persons where id = ?;";
     private final String GET_ALL_PERSONS_QUERY = "select * from persons;";
     private final String INSERT_PERSON_QUERY =
             "insert into persons(email, firstName, lastName, birthDay, managerFullName, professionalLevel, primarySkill) values (?,?,?,?,?,?,?);";
-
-    /**
-     * Here we initialize our in-memory database with persons from spring context
-     */
-    @PostConstruct
-    private void personsDataInit(){
-        for(Person p: listPersons){
-            insertRecord(p);
-        }
-    }
+    private final String UPDATE_PERSON_QUERY =
+            "update persons set email=?, firstName=?, lastName=?, birthDay=?, managerFullName=?, professionalLevel=?, primarySkill=? where id=?;";
 
     @Override
     public List<? extends Person> getAll() {
@@ -60,6 +49,20 @@ public class PersonDao implements EntryDao<Person> {
                 value.getManagerFullName(),
                 value.getProfessionalLevel().toString(),
                 value.getPrimarySkill().toString());
+        return value;
+    }
+
+    @Override
+    public Person updateRecord(Person value) {
+        jdbcEmbeddedH2Template.update(UPDATE_PERSON_QUERY,
+                value.getEmail(),
+                value.getFirstName(),
+                value.getLastName(),
+                value.getBirthDate(),
+                value.getManagerFullName(),
+                value.getProfessionalLevel().toString(),
+                value.getPrimarySkill().toString(),
+                value.getId());
         return value;
     }
 

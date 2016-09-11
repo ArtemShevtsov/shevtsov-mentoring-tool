@@ -12,4 +12,5 @@ public interface EntryDao<T> {
     public List<? extends T> getAll();
     public T getById(Integer id);
     public T insertRecord(T value);
+    public T updateRecord(T value);
 }

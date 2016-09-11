@@ -28,6 +28,8 @@ gretty {
     port = 8070
     contextPath = '/'
     servletContainer = 'jetty9'
+    scanInterval = 10 //Hot-deployment scan interval, in seconds. For more see http://akhikhl.github.io/gretty-doc/Hot-deployment.html
+    managedClassReload = true
 }
 
 //jettyRun{

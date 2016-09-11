@@ -11,9 +11,15 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 /**
  * Created by aftor on 10.09.16.
  */
+
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.epam.mentorship")
+@ComponentScan({
+        "com.epam.mentorship.configuration",
+        "com.epam.mentorship.controller",
+        "com.epam.mentorship.dao",
+        "com.epam.mentorship.service"
+})
 public class WebAppConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver(){
