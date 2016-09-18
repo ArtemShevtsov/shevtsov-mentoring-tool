@@ -1,6 +1,8 @@
 package com.epam.mentorship.configuration;
 
+import com.epam.mentorship.dao.MentorshipProgramDao;
 import com.epam.mentorship.dao.PersonDao;
+import com.epam.mentorship.entity.MentorshipProgram;
 import com.epam.mentorship.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +16,16 @@ import java.util.List;
 @Configuration
 public class EbeddedDataInitializer {
     @Autowired
-    PersonDao personDao;
+    private PersonDao personDao;
+
+    @Autowired
+    private MentorshipProgramDao mentorshipProgramDao;
 
     @Autowired
     private List<Person> listPersons;
+
+    @Autowired
+    private List<MentorshipProgram> listPrograms;
 
     /**
      * Here we initialize our in-memory database with data from spring context
@@ -26,6 +34,10 @@ public class EbeddedDataInitializer {
     private void embeddedDataInitialization(){
         for(Person p: listPersons){
             personDao.insertRecord(p);
+        }
+
+        for(MentorshipProgram p: listPrograms){
+            mentorshipProgramDao.insertRecord(p);
         }
     }
 }

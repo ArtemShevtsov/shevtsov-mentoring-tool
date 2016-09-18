@@ -5,10 +5,14 @@ import com.epam.mentorship.entity.PrimarySkill;
 import com.epam.mentorship.entity.ProfessionalLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 
@@ -41,14 +45,20 @@ public class PersonDao implements EntryDao<Person> {
 
     @Override
     public Person insertRecord(Person value) {
-        jdbcEmbeddedH2Template.update(INSERT_PERSON_QUERY,
-                value.getEmail(),
-                value.getFirstName(),
-                value.getLastName(),
-                value.getBirthDate(),
-                value.getManagerFullName(),
-                value.getProfessionalLevel().toString(),
-                value.getPrimarySkill().toString());
+        GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+        jdbcEmbeddedH2Template.update(con -> {
+            PreparedStatement preparedStatement = con.prepareStatement(INSERT_PERSON_QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, value.getEmail());
+            preparedStatement.setString(2, value.getFirstName());
+            preparedStatement.setString(3, value.getLastName());
+            preparedStatement.setDate(4, value.getBirthDate());
+            preparedStatement.setString(5, value.getManagerFullName());
+            preparedStatement.setString(6, value.getProfessionalLevel().toString());
+            preparedStatement.setString(7, value.getPrimarySkill().toString());
+            return preparedStatement;
+        }, generatedKeyHolder);
+
+        value.setId(generatedKeyHolder.getKey().intValue());
         return value;
     }
 

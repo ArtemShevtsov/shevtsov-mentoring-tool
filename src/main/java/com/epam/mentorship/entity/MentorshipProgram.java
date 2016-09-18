@@ -1,5 +1,9 @@
 package com.epam.mentorship.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 /**
@@ -7,9 +11,14 @@ import java.sql.Date;
  */
 public class MentorshipProgram {
     private Integer id;
+    @NotEmpty
+    @Size(min = 2, max = 255)
     private String name;
+    @NotNull
     private OfficeLocation location;
+    @NotNull
     private Date startDate;
+    @NotNull
     private Date endDate;
 
     public Integer getId() {
@@ -69,8 +78,7 @@ public class MentorshipProgram {
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
+        int result = name.hashCode();
         result = 31 * result + location.hashCode();
         result = 31 * result + startDate.hashCode();
         result = 31 * result + endDate.hashCode();

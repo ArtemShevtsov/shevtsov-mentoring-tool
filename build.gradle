@@ -54,4 +54,6 @@ dependencies {
     compile "org.springframework:spring-webmvc:${springVersion}"
 
     compile "com.h2database:h2:${h2DatabaseVersion}"
+
+    compile("org.hibernate:hibernate-validator")
 }

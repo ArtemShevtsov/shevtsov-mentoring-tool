@@ -1,5 +1,9 @@
 package com.epam.mentorship.entity;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.*;
 import java.sql.Date;
 
 /**
@@ -7,13 +11,28 @@ import java.sql.Date;
  */
 public class Person {
     private Integer id;
+    @NotEmpty(message = "QQQ-WWW")
+    @Size(min = 2, max = 255)
     private String firstName;
+    @NotEmpty
+    @Size(min = 2, max = 255)
     private String lastName;
-    private String email;
+    @NotNull
+    @Past
     private Date birthDate;
+    @NotEmpty
+    @Email
+    private String email;
+    @NotEmpty
+    @Size(min = 5, max = 255)
     private String managerFullName;
+    @NotNull
     private ProfessionalLevel professionalLevel;
+    @NotNull
     private PrimarySkill primarySkill;
+
+    public Person() {
+    }
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
@@ -101,8 +120,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + firstName.hashCode();
+        int result = firstName.hashCode();
         result = 31 * result + lastName.hashCode();
         result = 31 * result + email.hashCode();
         result = 31 * result + birthDate.hashCode();

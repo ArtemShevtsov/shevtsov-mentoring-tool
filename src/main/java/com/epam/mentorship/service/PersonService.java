@@ -11,9 +11,9 @@ import java.util.List;
  * Created by aftor on 11.09.16.
  */
 @Component
-public class PersonService implements AbstractService<Person> {
+public class PersonService implements IService<Person> {
     @Autowired
-    PersonDao personDao;
+    private PersonDao personDao;
 
     @Override
     public List<? extends Person> getAll() {
