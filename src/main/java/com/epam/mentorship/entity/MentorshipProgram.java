@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by aftor on 10.09.16.
@@ -79,9 +79,14 @@ public class MentorshipProgram {
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + location.hashCode();
-        result = 31 * result + startDate.hashCode();
-        result = 31 * result + endDate.hashCode();
+        if(id != null)
+            result = 31 * result + id.hashCode();
+        if(location != null)
+            result = 31 * result + location.hashCode();
+        if(startDate != null)
+            result = 31 * result + startDate.hashCode();
+        if(endDate != null)
+            result = 31 * result + endDate.hashCode();
         return result;
     }
 

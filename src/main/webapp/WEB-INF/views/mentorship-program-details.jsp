@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <h2>Please, find below Mentorship Program with ID <c:out value="${program.getId()}"/>:</h2>
 <hr>
 <p>
@@ -8,10 +10,10 @@
   Location           :   <c:out value="${program.getLocation().toString()}"/>
 </p>
 <p>
-  Start Date         :   <c:out value="${program.getStartDate()}"/>
+  Start Date         :   <fmt:formatDate value="${program.startDate}" pattern="dd/MM/yyyy" />
 </p>
 <p>
-  End Date           :   <c:out value="${program.getEndDate()}"/>
+  End Date           :   <fmt:formatDate value="${program.endDate}" pattern="dd/MM/yyyy" />
 </p>
 <br>
 <a href="/mentorship-programs">see All</a>

@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by aftor on 10.09.16.
@@ -121,9 +121,14 @@ public class Person {
     @Override
     public int hashCode() {
         int result = firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + birthDate.hashCode();
+        if(id != null)
+            result = 31 * result + id.hashCode();
+        if(lastName != null)
+            result = 31 * result + lastName.hashCode();
+        if(email != null)
+            result = 31 * result + email.hashCode();
+        if(birthDate != null)
+            result = 31 * result + birthDate.hashCode();
         return result;
     }
 

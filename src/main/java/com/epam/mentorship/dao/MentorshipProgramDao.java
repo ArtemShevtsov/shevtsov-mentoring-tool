@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
@@ -63,8 +64,8 @@ public class MentorshipProgramDao implements EntryDao<MentorshipProgram> {
             PreparedStatement preparedStatement = con.prepareStatement(INSERT_PROGRAM_QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, value.getName());
             preparedStatement.setString(2, value.getLocation().toString());
-            preparedStatement.setDate(3, value.getStartDate());
-            preparedStatement.setDate(4, value.getEndDate());
+            preparedStatement.setDate(3, new Date(value.getStartDate().getTime()));
+            preparedStatement.setDate(4, new Date(value.getEndDate().getTime()));
             return preparedStatement;
         }, generatedKeyHolder);
 

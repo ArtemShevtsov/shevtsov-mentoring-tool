@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
@@ -51,7 +52,7 @@ public class PersonDao implements EntryDao<Person> {
             preparedStatement.setString(1, value.getEmail());
             preparedStatement.setString(2, value.getFirstName());
             preparedStatement.setString(3, value.getLastName());
-            preparedStatement.setDate(4, value.getBirthDate());
+            preparedStatement.setDate(4, new Date(value.getBirthDate().getTime()));
             preparedStatement.setString(5, value.getManagerFullName());
             preparedStatement.setString(6, value.getProfessionalLevel().toString());
             preparedStatement.setString(7, value.getPrimarySkill().toString());

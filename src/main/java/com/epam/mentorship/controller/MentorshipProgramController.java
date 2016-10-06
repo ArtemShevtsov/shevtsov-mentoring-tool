@@ -6,6 +6,7 @@ import com.epam.mentorship.service.MentorshipProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -42,41 +44,51 @@ public class MentorshipProgramController {
     }
 
     @RequestMapping(value = "/{id}/edit", method = GET)
-    public ModelAndView addMentorshipProgramForm(@PathVariable Integer id, ModelAndView mv){
+    public ModelAndView addMentorshipProgramForm(@PathVariable Integer id){
         MentorshipProgram mentorshipProgram = service.getById(id);
+        ModelAndView mv = getPreparedModelAndView();
         mv.addObject("program", mentorshipProgram);
         mv.addObject("submitAction", "/mentorship-programs/edit");
-        mv.addObject("locations", OfficeLocation.values());
-        mv.setViewName("mentorship-program-form");
         return mv;
     }
 
     @RequestMapping(value = "/new", method = GET)
-    public ModelAndView addMentorshipProgramForm(ModelAndView mv){
-        mv.addObject("program", new MentorshipProgram());
+    public ModelAndView addMentorshipProgramForm(){
+        ModelAndView mv = getPreparedModelAndView();
         mv.addObject("submitAction", "/mentorship-programs/create");
-        mv.addObject("locations", OfficeLocation.values());
-        mv.setViewName("mentorship-program-form");
+        mv.addObject("program", new MentorshipProgram());
         return mv;
     }
 
     @RequestMapping(value = "create", method = POST)
-    public String addMentorshipProgram(@Valid MentorshipProgram mp, BindingResult result){
+    public ModelAndView addMentorshipProgram(@Valid @ModelAttribute("program") MentorshipProgram mp, BindingResult result){
         if(result.hasErrors()){
-            return "mentorship-program-form";
+            Map<String, Object> model = result.getModel();
+            ModelAndView mv = getPreparedModelAndView();
+            mv.addAllObjects(model);
+            return mv;
         }
         service.insertRecord(mp);
-        return "redirect:/mentorship-programs";
+        return new ModelAndView("redirect:/mentorship-programs");
     }
 
     @RequestMapping(value = "edit", method = POST)
-    public String editMentorshipProgram(@Valid MentorshipProgram mp, BindingResult result) throws UpdateWithoutIdException {
+    public ModelAndView editMentorshipProgram(@Valid @ModelAttribute("program") MentorshipProgram mp, BindingResult result) throws UpdateWithoutIdException {
         if(result.hasErrors()){
-            return "mentorship-program-form";
+            Map<String, Object> model = result.getModel();
+            ModelAndView mv = getPreparedModelAndView();
+            mv.addAllObjects(model);
+            return mv;
         } else if(mp.getId() == null) {
             throw new UpdateWithoutIdException(MentorshipProgram.class);
         }
         service.updateRecord(mp);
-        return "redirect:/mentorship-programs/" + mp.getId();
+        return new ModelAndView("redirect:/mentorship-programs/" + mp.getId());
+    }
+
+    private ModelAndView getPreparedModelAndView(){
+        ModelAndView mv = new ModelAndView("mentorship-program-form");
+        mv.addObject("locations", OfficeLocation.values());
+        return mv;
     }
 }

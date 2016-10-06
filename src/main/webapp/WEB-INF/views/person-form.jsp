@@ -40,7 +40,7 @@
     <tr>
       <td><form:label path="birthDate" for="birthDate">Date of birth:</form:label></td>
       <td>
-        <form:input path="birthDate" type="date" />
+        <form:input path="birthDate" />
         <div class="error"><form:errors path="birthDate" /></div>
       </td>
     </tr>
