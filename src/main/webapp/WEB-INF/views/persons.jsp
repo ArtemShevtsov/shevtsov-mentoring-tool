@@ -1,5 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:if test="${pageContext.request.userPrincipal.name != null}">
+  <form action="/j_spring_security_logout" method="POST">
+    Hi, ${pageContext.request.userPrincipal.name} <input type="submit" value="log out"/>
+  </form>
+  <hr>
+</c:if>
+
 <h2>Please, find below all persons:</h2>
 <a href="/persons/new">Add New Person</a>
 <hr>

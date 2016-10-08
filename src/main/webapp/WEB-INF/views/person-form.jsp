@@ -9,6 +9,13 @@
 }
 </style>
 
+<c:if test="${pageContext.request.userPrincipal.name != null}">
+  <form action="/j_spring_security_logout" method="POST">
+    Hi, ${pageContext.request.userPrincipal.name} <input type="submit" value="log out"/>
+  </form>
+  <hr>
+</c:if>
+
 <form:form method="post" modelAttribute="person" action="${submitAction}">
   <table>
     <tr><td colspan="2"><form:hidden path="id" /></td></tr>
