@@ -1,10 +1,8 @@
 package com.epam.mentorship.configuration.web;
 
+import com.epam.mentorship.configuration.aspect.AspectConfiguration;
 import com.epam.mentorship.configuration.security.SecurityConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -20,9 +18,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
         "com.epam.mentorship.configuration",
         "com.epam.mentorship.controller",
         "com.epam.mentorship.dao",
-        "com.epam.mentorship.service"
+        "com.epam.mentorship.service",
+        "com.epam.mentorship.aspect"
 })
-@Import({SecurityConfiguration.class})
 public class WebAppConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver(){
