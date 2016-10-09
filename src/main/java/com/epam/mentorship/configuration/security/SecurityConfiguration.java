@@ -19,13 +19,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.inMemoryAuthentication()
                 .withUser("user_1").password("pass_1").roles("USER").and()
                 .withUser("user_2").password("pass_2").roles("USER").and()
-                .withUser("user_3").password("pass_3").roles("USER");
+                .withUser("user_3").password("pass_3").roles("USER").and()
+                .withUser("admin").password("admin").roles("ADMIN");
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .mvcMatchers("/persons/**", "/mentorship-programs/**").hasRole("USER")
+                .mvcMatchers("/persons/**", "/mentorship-programs/**").hasAnyRole("USER", "ADMIN")
+                .mvcMatchers("/json/**", "/xml/**").hasRole("ADMIN")
                 .and()
                 .formLogin().loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/login").failureUrl("/login?error")

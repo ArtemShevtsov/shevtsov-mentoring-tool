@@ -39,7 +39,7 @@
     <tr>
       <td><form:label path="startDate" for="startDate">Start Date:</form:label></td>
       <td>
-        <form:input path="startDate" type="date" />
+        <form:input path="startDate" />
         <div class="error"><form:errors path="startDate" /></div>
       </td>
     </tr>
@@ -47,7 +47,7 @@
     <tr>
       <td><form:label path="endDate" for="endDate">End Date:</form:label></td>
       <td>
-        <form:input path="endDate" type="date" />
+        <form:input path="endDate" />
         <div class="error"><form:errors path="endDate" /></div>
       </td>
     </tr>
