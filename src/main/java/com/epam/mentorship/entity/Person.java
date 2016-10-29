@@ -31,6 +31,11 @@ public class Person {
     @NotNull
     private PrimarySkill primarySkill;
 
+    private Date dateCreated;
+    private String createdByUser;
+    private Date dateLastModified;
+    private String lastModifiedByUser;
+
     public Person() {
     }
 
@@ -101,6 +106,38 @@ public class Person {
 
     public void setPrimarySkill(PrimarySkill primarySkill) {
         this.primarySkill = primarySkill;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public String getCreatedByUser() {
+        return createdByUser;
+    }
+
+    public void setCreatedByUser(String createdByUser) {
+        this.createdByUser = createdByUser;
+    }
+
+    public Date getDateLastModified() {
+        return dateLastModified;
+    }
+
+    public void setDateLastModified(Date dateLastModified) {
+        this.dateLastModified = dateLastModified;
+    }
+
+    public String getLastModifiedByUser() {
+        return lastModifiedByUser;
+    }
+
+    public void setLastModifiedByUser(String lastModifiedByUser) {
+        this.lastModifiedByUser = lastModifiedByUser;
     }
 
     @Override

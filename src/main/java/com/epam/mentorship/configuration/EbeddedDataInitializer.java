@@ -4,6 +4,7 @@ import com.epam.mentorship.dao.MentorshipProgramDao;
 import com.epam.mentorship.dao.PersonDao;
 import com.epam.mentorship.entity.MentorshipProgram;
 import com.epam.mentorship.entity.Person;
+import org.hsqldb.util.DatabaseManagerSwing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,5 +40,7 @@ public class EbeddedDataInitializer {
         for(MentorshipProgram p: listPrograms){
             mentorshipProgramDao.insertRecord(p);
         }
+
+        DatabaseManagerSwing.main(new String[] { "--url", "jdbc:h2:mem:mentorship-db", "--user", "sa", "--password", "" });
     }
 }
