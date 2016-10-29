@@ -26,9 +26,12 @@ public class MentorshipProgramDao implements EntryDao<MentorshipProgram> {
     private final String GET_ALL_PROGRAMS_QUERY = "select * from mentorshipPrograms;";
     private final String GET_PROGRAM_BY_ID_QUERY = "select * from mentorshipPrograms where id = ?;";
     private final String INSERT_PROGRAM_QUERY =
-            "insert into mentorshipPrograms(name, location, startDate, endDate) values (?,?,?,?);";
+            "insert into mentorshipPrograms(name, location, startDate, endDate, dateCreated, createdByUser) " +
+            "values (?,?,?,?,?,?);";
     private final String UPDATE_PROGRAM_QUERY =
-            "update mentorshipPrograms set name=?, location=?, startDate=?, endDate=? where id=?;";
+            "update mentorshipPrograms set " +
+            "name=?, location=?, startDate=?, endDate=?, dateLastModified=?, lastModifiedByUser=? " +
+            "where id=?;";
 
     @Override
     public RowMapper<? extends MentorshipProgram> entityRowMapper() {
@@ -40,6 +43,10 @@ public class MentorshipProgramDao implements EntryDao<MentorshipProgram> {
             mentorshipProgram.setStartDate(rs.getDate("startDate"));
             mentorshipProgram.setEndDate(rs.getDate("endDate"));
 
+            mentorshipProgram.setDateCreated(rs.getDate("dateCreated"));
+            mentorshipProgram.setCreatedByUser(rs.getString("createdByUser"));
+            mentorshipProgram.setDateLastModified(rs.getDate("dateLastModified"));
+            mentorshipProgram.setLastModifiedByUser(rs.getString("lastModifiedByUser"));
             return mentorshipProgram;
         };
     }
@@ -66,6 +73,9 @@ public class MentorshipProgramDao implements EntryDao<MentorshipProgram> {
             preparedStatement.setString(2, value.getLocation().toString());
             preparedStatement.setDate(3, new Date(value.getStartDate().getTime()));
             preparedStatement.setDate(4, new Date(value.getEndDate().getTime()));
+
+            preparedStatement.setDate(5, new Date(value.getDateCreated().getTime()));
+            preparedStatement.setString(6, value.getCreatedByUser());
             return preparedStatement;
         }, generatedKeyHolder);
 
@@ -80,6 +90,8 @@ public class MentorshipProgramDao implements EntryDao<MentorshipProgram> {
                 value.getLocation().toString(),
                 value.getStartDate(),
                 value.getEndDate(),
+                value.getDateLastModified(),
+                value.getLastModifiedByUser(),
                 value.getId());
         return value;
     }

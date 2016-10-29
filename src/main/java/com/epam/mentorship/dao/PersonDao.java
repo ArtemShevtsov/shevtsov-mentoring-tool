@@ -3,6 +3,7 @@ package com.epam.mentorship.dao;
 import com.epam.mentorship.entity.Person;
 import com.epam.mentorship.entity.PrimarySkill;
 import com.epam.mentorship.entity.ProfessionalLevel;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Component
 public class PersonDao implements EntryDao<Person> {
+    private static final Logger logger = Logger.getLogger(PersonDao.class);
 
     @Autowired
     private JdbcTemplate jdbcEmbeddedH2Template;
@@ -29,9 +31,17 @@ public class PersonDao implements EntryDao<Person> {
     private final String GET_PERSON_BY_ID_QUERY = "select * from persons where id = ?;";
     private final String GET_ALL_PERSONS_QUERY = "select * from persons;";
     private final String INSERT_PERSON_QUERY =
-            "insert into persons(email, firstName, lastName, birthDay, managerFullName, professionalLevel, primarySkill) values (?,?,?,?,?,?,?);";
+            "insert into persons" +
+                    "(email, firstName, lastName, birthDay, " +
+                    "managerFullName, professionalLevel, primarySkill, " +
+                    "dateCreated, createdByUser) " +
+            "values (?,?,?,?,?,?,?,?,?);";
     private final String UPDATE_PERSON_QUERY =
-            "update persons set email=?, firstName=?, lastName=?, birthDay=?, managerFullName=?, professionalLevel=?, primarySkill=? where id=?;";
+            "update persons set " +
+                    "email=?, firstName=?, lastName=?, birthDay=?, " +
+                    "managerFullName=?, professionalLevel=?, primarySkill=?, " +
+                    "dateLastModified=?, lastModifiedByUser=?" +
+            "where id=?;";
 
     @Override
     public List<? extends Person> getAll() {
@@ -56,6 +66,8 @@ public class PersonDao implements EntryDao<Person> {
             preparedStatement.setString(5, value.getManagerFullName());
             preparedStatement.setString(6, value.getProfessionalLevel().toString());
             preparedStatement.setString(7, value.getPrimarySkill().toString());
+            preparedStatement.setDate(8, new Date(value.getDateCreated().getTime()));
+            preparedStatement.setString(9, value.getCreatedByUser());
             return preparedStatement;
         }, generatedKeyHolder);
 
@@ -73,6 +85,8 @@ public class PersonDao implements EntryDao<Person> {
                 value.getManagerFullName(),
                 value.getProfessionalLevel().toString(),
                 value.getPrimarySkill().toString(),
+                value.getDateLastModified(),
+                value.getLastModifiedByUser(),
                 value.getId());
         return value;
     }
@@ -87,6 +101,11 @@ public class PersonDao implements EntryDao<Person> {
             person.setManagerFullName(rs.getString("managerFullName"));
             person.setProfessionalLevel(ProfessionalLevel.getFromString(rs.getString("professionalLevel")));
             person.setPrimarySkill(PrimarySkill.getFromString(rs.getString("primarySkill")));
+
+            person.setDateCreated(rs.getDate("dateCreated"));
+            person.setCreatedByUser(rs.getString("createdByUser"));
+            person.setDateLastModified(rs.getDate("dateLastModified"));
+            person.setLastModifiedByUser(rs.getString("lastModifiedByUser"));
 
             return person;
         };
