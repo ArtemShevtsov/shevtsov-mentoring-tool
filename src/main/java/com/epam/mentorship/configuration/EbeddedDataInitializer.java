@@ -41,6 +41,6 @@ public class EbeddedDataInitializer {
             mentorshipProgramDao.insertRecord(p);
         }
 
-        DatabaseManagerSwing.main(new String[] { "--url", "jdbc:h2:mem:mentorship-db", "--user", "sa", "--password", "" });
+//        DatabaseManagerSwing.main(new String[] { "--url", "jdbc:h2:mem:mentorship-db", "--user", "sa", "--password", "" });
     }
 }
