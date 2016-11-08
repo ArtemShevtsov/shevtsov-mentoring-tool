@@ -19,8 +19,9 @@ public class DataSourceConfiguration {
     public DataSource embeddedH2DataSource(){
         EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = dbBuilder.setType(EmbeddedDatabaseType.H2)
-                .setName("mentorship-db")
-                .addScript("classpath:create-db.sql")
+//                .setName("mentorship-db")
+//                .addScript("classpath:create-db.sql")
+                .setName("mentorship-db-jpa")
                 .build();
         return db;
     }

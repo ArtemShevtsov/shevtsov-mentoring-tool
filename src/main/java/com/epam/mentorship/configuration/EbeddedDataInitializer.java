@@ -7,6 +7,7 @@ import com.epam.mentorship.entity.Person;
 import org.hsqldb.util.DatabaseManagerSwing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -33,14 +34,14 @@ public class EbeddedDataInitializer {
      */
     @PostConstruct
     private void embeddedDataInitialization(){
-        for(Person p: listPersons){
-            personDao.insertRecord(p);
-        }
+//        for(Person p: listPersons){
+//            personDao.insertRecord(p);
+//        }
+//
+//        for(MentorshipProgram p: listPrograms){
+//            mentorshipProgramDao.insertRecord(p);
+//        }
 
-        for(MentorshipProgram p: listPrograms){
-            mentorshipProgramDao.insertRecord(p);
-        }
-
-//        DatabaseManagerSwing.main(new String[] { "--url", "jdbc:h2:mem:mentorship-db", "--user", "sa", "--password", "" });
+        DatabaseManagerSwing.main(new String[] { "--url", "jdbc:h2:mem:mentorship-db-jpa", "--user", "sa", "--password", "" });
     }
 }

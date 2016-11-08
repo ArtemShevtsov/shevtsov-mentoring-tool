@@ -3,31 +3,52 @@ package com.epam.mentorship.entity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 
 /**
  * Created by aftor on 10.09.16.
  */
+@Entity(name = "persons")
 public class Person {
+    @Id
+    @GeneratedValue
     private Integer id;
+
     @NotEmpty(message = "QQQ-WWW")
     @Size(min = 2, max = 255)
+    @Column(name = "first-name", length = 255, nullable = false)
     private String firstName;
+
     @NotEmpty
     @Size(min = 2, max = 255)
+    @Column(name = "last-name", length = 255, nullable = false)
     private String lastName;
+
     @NotNull
     @Past
+    @Column(name = "birth-date", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
+
     @NotEmpty
     @Email
+    @Column(length = 100, nullable = false)
     private String email;
+
+//    @Column(name = "manager-id")
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = Person.class)
+    private Person manager;
+
     @NotEmpty
     @Size(min = 5, max = 255)
+    @Transient
     private String managerFullName;
+
     @NotNull
     private ProfessionalLevel professionalLevel;
+
     @NotNull
     private PrimarySkill primarySkill;
 
@@ -74,6 +95,14 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Person getManager() {
+        return manager;
+    }
+
+    public void setManager(Person manager) {
+        this.manager = manager;
     }
 
     public Date getBirthDate() {
