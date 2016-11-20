@@ -24,6 +24,16 @@ public class BeansConfiguration {
         List<Person> personsList = new ArrayList<>(5);
         Calendar calendar = getInstance();
 
+
+        Person pp = new Person("QW", "DFFF");
+        pp.setPrimarySkill(PrimarySkill.GROOVY);
+        pp.setProfessionalLevel(ProfessionalLevel.L5);
+        calendar.set(1980, MAY, 11);
+        pp.setBirthDate(new Date(calendar.getTime().getTime()));
+        pp.setManagerFullName("Oleksandr Lipsky");
+        pp.setEmail("Ivan_Fedorov@epam.com");
+        personsList.add(pp);
+
         Person p1 = new Person("Ivan", "Fedorov");
         p1.setPrimarySkill(PrimarySkill.GROOVY);
         p1.setProfessionalLevel(ProfessionalLevel.L1);
@@ -31,6 +41,7 @@ public class BeansConfiguration {
         p1.setBirthDate(new Date(calendar.getTime().getTime()));
         p1.setManagerFullName("Oleksandr Lipsky");
         p1.setEmail("Ivan_Fedorov@epam.com");
+        p1.setManager(pp);
         personsList.add(p1);
 
         Person p2 = new Person("Petr", "Krivonos");

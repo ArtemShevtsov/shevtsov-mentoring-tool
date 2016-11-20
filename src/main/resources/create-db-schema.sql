@@ -1,0 +1,2 @@
+INIT=CREATE SCHEMA IF NOT EXISTS;
+SET SCHEMA mentorship-db-jpa;

@@ -16,19 +16,19 @@ public class Person {
     @GeneratedValue
     private Integer id;
 
-    @NotEmpty(message = "QQQ-WWW")
+    @NotEmpty(message = "FirstName should not be empty")
     @Size(min = 2, max = 255)
-    @Column(name = "first-name", length = 255, nullable = false)
+    @Column(name = "firstName", length = 255, nullable = false)
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "LastName should not be empty")
     @Size(min = 2, max = 255)
-    @Column(name = "last-name", length = 255, nullable = false)
+    @Column(name = "lastName", length = 255, nullable = false)
     private String lastName;
 
     @NotNull
     @Past
-    @Column(name = "birth-date", nullable = false)
+    @Column(name = "birthDate", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 
@@ -37,7 +37,7 @@ public class Person {
     @Column(length = 100, nullable = false)
     private String email;
 
-//    @Column(name = "manager-id")
+//    @Column(name = "managerId")
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Person.class)
     private Person manager;
 
@@ -47,14 +47,22 @@ public class Person {
     private String managerFullName;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private ProfessionalLevel professionalLevel;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private PrimarySkill primarySkill;
 
+    @Column(name = "dateCreated")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
+    @Column(name = "createdByUser")
     private String createdByUser;
+    @Column(name = "dateLastModified")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateLastModified;
+    @Column(name = "lastModifiedByUser")
     private String lastModifiedByUser;
 
     public Person() {
