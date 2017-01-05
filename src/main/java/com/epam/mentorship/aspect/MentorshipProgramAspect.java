@@ -23,7 +23,7 @@ public class MentorshipProgramAspect {
     @Pointcut("execution(* updateRecord(..))")
     private void updateRecordPointcut(){}
 
-    @Pointcut("within(com.epam.mentorship.dao.MentorshipProgramDao)")
+    @Pointcut("within(com.epam.mentorship.service.MentorshipProgramService)")
     private void withinMentorshipProgramPointcut(){}
 
 

@@ -37,7 +37,6 @@ public class Person {
     @Column(length = 100, nullable = false)
     private String email;
 
-//    @Column(name = "managerId")
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Person.class)
     private Person manager;
 

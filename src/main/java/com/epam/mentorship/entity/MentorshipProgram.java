@@ -2,6 +2,7 @@ package com.epam.mentorship.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -9,16 +10,26 @@ import java.util.Date;
 /**
  * Created by aftor on 10.09.16.
  */
+@Entity(name = "mentorshipPrograms")
 public class MentorshipProgram {
+
+    @Id
+    @GeneratedValue
     private Integer id;
     @NotEmpty
     @Size(min = 2, max = 255)
     private String name;
+
     @NotNull
+    @Enumerated(EnumType.STRING)
     private OfficeLocation location;
+
     @NotNull
+    @Temporal(TemporalType.DATE)
     private Date startDate;
+
     @NotNull
+    @Temporal(TemporalType.DATE)
     private Date endDate;
 
     private Date dateCreated;

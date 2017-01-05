@@ -18,10 +18,10 @@ import java.util.Date;
 public class PersonAspect {
     private static final Logger logger = Logger.getLogger(PersonAspect.class);
 
-    @Pointcut("execution(public * com.epam.mentorship.dao.PersonDao.insertRecord(..))")
+    @Pointcut("execution(public * com.epam.mentorship.service.PersonService.insertRecord(..))")
     private void insertPersonPointcut(){}
 
-    @Pointcut("execution(public * com.epam.mentorship.dao.PersonDao.updateRecord(..))")
+    @Pointcut("execution(public * com.epam.mentorship.service.PersonService.updateRecord(..))")
     private void updatePersonPointcut(){}
 
     @Before(value = "insertPersonPointcut() && args(person)")

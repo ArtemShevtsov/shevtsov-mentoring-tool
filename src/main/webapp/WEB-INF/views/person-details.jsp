@@ -20,13 +20,13 @@
   Email            :   <c:out value="${person.getEmail()}"/>
 </p>
 <p>
-  Manager          :   <c:out value="${person.getManagerFullName()}"/>
+  Manager          :   <c:out value="${person.getManagerFullName()}"/>веч
 </p>
 <p>
   Primary skill    :   <c:out value="${person.getPrimarySkill().toString()}"/>
 </p>
 <p>
-  Birth day        :   <fmt:formatDate value="${p.birthDate}" pattern="dd/MM/yyyy" />
+  Birth day        :   <fmt:formatDate value="${person.birthDate}" pattern="dd/MM/yyyy" />
 </p>
 <p>
   Professional Lvl :   <c:out value="${person.getProfessionalLevel().toString()}"/>

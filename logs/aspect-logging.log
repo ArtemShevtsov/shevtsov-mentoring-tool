@@ -33,3 +33,75 @@ MentorshipProgram{id=null, name='Kyev MP (Office 1)', location=Kyev, First Offic
 		Params: 
 			 Class: class com.epam.mentorship.entity.MentorshipProgram, toString: 
 MentorshipProgram{id=null, name='Kyev MP (Office 2)', location=Kyev, Second Office Adress, startDate=2016-10-20, endDate=2016-12-31}
+[2016-11-26 20:49:51 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: Person com.epam.mentorship.service.PersonService.insertRecord(Person)
+		Params: 
+			 Class: class com.epam.mentorship.entity.Person, toString: 
+Person{id=null, firstName='QW', lastName='DFFF', email='Ivan_Fedorov@epam.com', birthDate=1980-05-11, managerFullName=Oleksandr Lipsky, professionalLevel=level_5, primarySkill=Groovy}
+[2016-11-26 20:49:51 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: Person com.epam.mentorship.service.PersonService.insertRecord(Person)
+		Params: 
+			 Class: class com.epam.mentorship.entity.Person, toString: 
+Person{id=null, firstName='Ivan', lastName='Fedorov', email='Ivan_Fedorov@epam.com', birthDate=1994-05-11, managerFullName=Oleksandr Lipsky, professionalLevel=level_1, primarySkill=Groovy}
+[2016-11-26 20:49:51 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: Person com.epam.mentorship.service.PersonService.insertRecord(Person)
+		Params: 
+			 Class: class com.epam.mentorship.entity.Person, toString: 
+Person{id=null, firstName='Petr', lastName='Krivonos', email='Petr_Krivonos@epam.com', birthDate=1992-06-03, managerFullName=Yuriy Oglobyak, professionalLevel=level_2, primarySkill=Java}
+[2016-11-26 20:49:51 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: Person com.epam.mentorship.service.PersonService.insertRecord(Person)
+		Params: 
+			 Class: class com.epam.mentorship.entity.Person, toString: 
+Person{id=null, firstName='Andriy', lastName='Kerchisin', email='Andriy_Rerchisin@epam.com', birthDate=1990-08-22, managerFullName=Michil Fedorov, professionalLevel=level_4, primarySkill=JavaScript}
+[2016-11-26 20:49:51 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: MentorshipProgram com.epam.mentorship.service.MentorshipProgramService.insertRecord(MentorshipProgram)
+		Params: 
+			 Class: class com.epam.mentorship.entity.MentorshipProgram, toString: 
+MentorshipProgram{id=null, name='Lviv MP', location=Lviv, Oleny Stepanivny, 45a, startDate=2016-09-01, endDate=2016-11-01}
+[2016-11-26 20:49:51 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: MentorshipProgram com.epam.mentorship.service.MentorshipProgramService.insertRecord(MentorshipProgram)
+		Params: 
+			 Class: class com.epam.mentorship.entity.MentorshipProgram, toString: 
+MentorshipProgram{id=null, name='Dnipro MP', location=Dnipro Adress, startDate=2016-09-01, endDate=2016-11-01}
+[2016-11-26 20:49:52 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: MentorshipProgram com.epam.mentorship.service.MentorshipProgramService.insertRecord(MentorshipProgram)
+		Params: 
+			 Class: class com.epam.mentorship.entity.MentorshipProgram, toString: 
+MentorshipProgram{id=null, name='Kyev MP (Office 1)', location=Kyev, First Office Adress, startDate=2016-10-05, endDate=2016-12-10}
+[2016-11-26 20:49:52 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: MentorshipProgram com.epam.mentorship.service.MentorshipProgramService.insertRecord(MentorshipProgram)
+		Params: 
+			 Class: class com.epam.mentorship.entity.MentorshipProgram, toString: 
+MentorshipProgram{id=null, name='Kyev MP (Office 2)', location=Kyev, Second Office Adress, startDate=2016-10-20, endDate=2016-12-31}
+[2016-11-26 20:50:19 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD getAll.
+		Signature: List com.epam.mentorship.service.PersonService.getAll()[2016-11-26 20:50:32 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD getById.
+		Signature: Person com.epam.mentorship.service.PersonService.getById(Integer)
+		Params: 
+			 Class: class java.lang.Integer, toString: 
+1
+[2016-11-26 20:51:14 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD getById.
+		Signature: Person com.epam.mentorship.service.PersonService.getById(Integer)
+		Params: 
+			 Class: class java.lang.Integer, toString: 
+4
+[2016-11-26 20:51:17 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD getById.
+		Signature: Person com.epam.mentorship.service.PersonService.getById(Integer)
+		Params: 
+			 Class: class java.lang.Integer, toString: 
+4
+[2016-11-26 20:53:02 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD insertRecord.
+		Signature: Person com.epam.mentorship.service.PersonService.insertRecord(Person)
+		Params: 
+			 Class: class com.epam.mentorship.entity.Person, toString: 
+Person{id=null, firstName='xzvxv', lastName='asdfsd', email='sd@re.ct', birthDate=Sat Mar 15 00:00:00 EET 1986, managerFullName=hgyiop, professionalLevel=level_1, primarySkill=Java}
+[2016-11-26 20:53:02 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD getAll.
+		Signature: List com.epam.mentorship.service.PersonService.getAll()[2016-11-26 20:54:41 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD getById.
+		Signature: Person com.epam.mentorship.service.PersonService.getById(Integer)
+		Params: 
+			 Class: class java.lang.Integer, toString: 
+5
+[2016-11-26 20:58:00 INFO  ServiceLogginAspect:41] - BEFORE EXECUTION METHOD getById.
+		Signature: Person com.epam.mentorship.service.PersonService.getById(Integer)
+		Params: 
+			 Class: class java.lang.Integer, toString: 
+5
